@@ -3,10 +3,12 @@ import {Action} from 'redux';
 export const FILTER_COURSES = '[FILTER] COURSES';
 
 export class FilterCourses implements Action {
-  type: 'FILTER_COURSES';
-  searchText: string;
+  type: string = FILTER_COURSES;
 
-  constructor(public text: string) {
-    this.searchText = text;
+  public searchText(searchText) {
+    return {
+      type: this.type,
+      searchText: searchText
+    };
   }
 }
