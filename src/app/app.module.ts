@@ -20,6 +20,7 @@ import { ModalComponent, ModalService } from './blocks/modal';
 import { ExceptionService } from './blocks/exception.service';
 import { NgRedux, NgReduxModule } from 'ng2-redux';
 import { IAppState, store } from './store';
+import { CourseActionsService } from './courses/course.actions.service';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { IAppState, store } from './store';
     SpinnerService,
     ModalService,
     ExceptionService,
+    CourseActionsService
   ],
   bootstrap: [AppComponent]
 })

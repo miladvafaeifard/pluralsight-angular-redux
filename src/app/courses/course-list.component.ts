@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {store, FilterCourses, IAppState} from '../store';
-import {NgRedux, select} from 'ng2-redux';
-import {Observable} from 'rxjs/Observable';
-import {Course} from './course';
+import { Component, OnInit } from '@angular/core';
+import { IAppState } from '../store';
+import { NgRedux, select } from 'ng2-redux';
+import { Observable } from 'rxjs/Observable';
+import { Course } from './course';
+import { CourseActionsService } from './course.actions.service';
 
 @Component({
   selector: 'app-course-list',
@@ -11,14 +12,13 @@ import {Course} from './course';
 })
 export class CourseListComponent implements OnInit {
   @select('filteredCourses') filteredCourses$: Observable<Course>;
-  filterCourses: FilterCourses;
 
-  constructor(ngRedux: NgRedux<IAppState>) {
-    this.filterCourses = new FilterCourses();
+  constructor(private ngRedux: NgRedux<IAppState>,
+              private courseActions: CourseActionsService) {
   }
 
   filterChanged(searchText: string) {
-    store.dispatch(this.filterCourses.searchText(searchText));
+    this.courseActions.filterCourses(searchText);
   }
 
   ngOnInit() {
