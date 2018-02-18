@@ -29,7 +29,8 @@ const courses = [
 ];
 
 const initState: IAppState = {
-  courses: courses
+  courses: courses,
+  filteredCourses: courses
 };
 
 function filterCourses(state, action) {
@@ -38,8 +39,8 @@ function filterCourses(state, action) {
       return course.name.toLowerCase()
         .indexOf(action.searchText.toLowerCase()) > -1;
     })
-})
-  ;
+  })
+    ;
 }
 
 export function reducer(state = initState, action) {
