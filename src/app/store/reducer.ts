@@ -1,5 +1,5 @@
 import {IAppState} from './IAppState';
-import { FILTER_COURSES } from '../courses/course.actions.service';
+import { FILTER_COURSES, REQUEST_COURSES } from '../courses/course.actions.service';
 
 const courses = [
   {
@@ -39,14 +39,22 @@ function filterCourses(state, action) {
       return course.name.toLowerCase()
         .indexOf(action.searchText.toLowerCase()) > -1;
     })
-  })
-    ;
+  });
+}
+
+function storeCourses(state, action) {
+  return Object.assign({}, state, {
+    courses: action.courses,
+    filteredCourses: action.courses
+  });
 }
 
 export function reducer(state = initState, action) {
   switch (action.type) {
     case FILTER_COURSES:
       return filterCourses(state, action);
+    case REQUEST_COURSES:
+      return storeCourses(state, action);
     default:
       return state;
   }
